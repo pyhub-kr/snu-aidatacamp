@@ -1,4 +1,5 @@
 from django import __version__
+from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -12,6 +13,7 @@ login = auth_views.LoginView.as_view(
     form_class=LoginForm,
     template_name="form.html",
     redirect_authenticated_user=True,
+    success_url_allowed_hosts=settings.SUCCESS_URL_ALLOWED_HOSTS,
 )
 
 
@@ -26,6 +28,7 @@ class LogoutView(auth_views.LogoutView):
 
 logout = LogoutView.as_view(
     next_page="accounts:login",
+    success_url_allowed_hosts=settings.SUCCESS_URL_ALLOWED_HOSTS,
 )
 
 
