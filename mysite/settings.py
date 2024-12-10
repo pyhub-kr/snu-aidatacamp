@@ -81,6 +81,29 @@ DATABASES = {
     "default": env.db("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
 }
 
+if "sqlite" in DATABASES["default"]["ENGINE"]:
+    if "OPTIONS" not in DATABASES["default"]:
+        DATABASES["default"]["OPTIONS"] = {}
+    # refs: https://gcollazo.com/optimal-sqlite-settings-for-django/
+    DATABASES["default"]["OPTIONS"].update(
+        {
+            "init_command": (
+                "PRAGMA foreign_keys = OFF;"
+                "PRAGMA journal_mode = WAL;"
+                "PRAGMA synchronous = NORMAL;"
+                "PRAGMA busy_timeout = 5000;"
+                "PRAGMA temp_store = MEMORY;"
+                "PRAGMA mmap_size = 134217728;"
+                "PRAGMA journal_size_limit = 67108864;"
+                "PRAGMA cache_size = 2000;"
+            ),
+            # 위 가이드 대로 "IMMEDIATE"를 지정하니 SystemCheckError 발생
+            # DatabaseBackend is using SQLite non-exclusive transactions
+            #   HINT: Set settings.DATABASES["default"]["OPTIONS"]["transaction_mode"] to "EXCLUSIVE"
+            "transaction_mode": "EXCLUSIVE",
+        }
+    )
+
 AUTH_USER_MODEL = "accounts.User"
 
 AUTH_PASSWORD_VALIDATORS = [
