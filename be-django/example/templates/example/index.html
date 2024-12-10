@@ -1,12 +1,6 @@
 {% extends "example/base.html" %}
 
 {% block content %}
-    <div class="flex justify-end mb-4">
-        <a href="{% url 'example:situation-chat-room-new' %}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-            새 채팅방 만들기
-        </a>
-    </div>
-
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -19,17 +13,14 @@
                 {% for chat_room in chatroom_list %}
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <td class="px-6 py-4">
-                        <a href="{{ chat_room.get_absolute_url }}" class="font-medium text-blue-600 hover:underline">
+                        <a href="{% url 'example:chat-room' %}" class="font-medium text-blue-600 hover:underline">
                             {{ chat_room.name }}
                         </a>
                     </td>
                     <td class="px-6 py-4">
                         <div class="flex gap-2">
-                            <a href="{% url 'example:situation-chat-room-edit' chat_room.pk %}" class="font-medium text-blue-600 hover:underline">
+                            <a href="{% url 'example:edit' %}" class="font-medium text-blue-600 hover:underline">
                                 수정
-                            </a>
-                            <a href="{% url 'example:situation-chat-room-delete' chat_room.pk %}" class="font-medium text-red-600 hover:underline">
-                                삭제
                             </a>
                         </div>
                     </td>

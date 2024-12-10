@@ -15,8 +15,9 @@ class SituationChatView(AgentChatView):
     async def chat_setup(self, send_func: Callable[[str], Coroutine]) -> None:
         current_user = await self.get_user()
         if current_user:
-            pk = self.kwargs["pk"]
-            qs = ChatRoom.objects.filter(pk=pk, user=current_user)
+            # pk = self.kwargs["pk"]
+            # qs = ChatRoom.objects.filter(pk=pk, user=current_user)
+            qs = ChatRoom.objects.filter(user=current_user)
             self.chat_room = await qs.afirst()
 
         await super().chat_setup(send_func)

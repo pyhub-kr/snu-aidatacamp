@@ -9,5 +9,5 @@ websocket_urlpatterns = [
 ]
 
 sse_urlpatterns = [
-    path("agent/chat/<int:pk>/", SituationChatView.as_view()),
+    path("agent/chat/", SituationChatView.as_view()),
 ]

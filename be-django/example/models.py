@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.urls import reverse
 
 from django_lifecycle import LifecycleModel, hook, AFTER_SAVE, AFTER_DELETE
 
@@ -17,7 +16,7 @@ class ChatRoom(LifecycleModel):
     llm_model = models.CharField(
         max_length=50,
         choices=[(model.name, model.name) for model in LLMModel],
-        default=LLMModel.OPENAI_GPT_4O.value,
+        default=LLMModel.OPENAI_GPT_4O.name,
     )
     llm_temperature = models.FloatField(
         default=1, validators=[MinValueValidator(0), MaxValueValidator(1)]
@@ -37,9 +36,6 @@ You are a language tutor.
     llm_first_user_message_template = models.TextField(
         default="첫 문장으로 대화를 시작하세요."
     )
-
-    def get_absolute_url(self) -> str:
-        return reverse("example:situation-chat-room", args=[self.pk])
 
     @hook(AFTER_SAVE)
     def on_after_save(self):
