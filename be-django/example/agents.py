@@ -4,10 +4,14 @@ from asgiref.sync import sync_to_async
 from pyhub_ai.models import Conversation
 from pyhub_ai.specs import LLMModel
 from pyhub_ai.views import AgentChatView
+
+from .forms import MessageForm
 from .models import ChatRoom
 
 
 class SituationChatView(AgentChatView):
+    form_class = MessageForm
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.chat_room: Optional[ChatRoom] = None

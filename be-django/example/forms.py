@@ -2,8 +2,20 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import ButtonHolder, Field, Layout, Row
 from django import forms
 
+from pyhub_ai.forms import MessageForm as OrigMessageForm
+
 from .layout import JustOneClickableSubmit
 from .models import ChatRoom
+
+
+class MessageForm(OrigMessageForm):
+    def clean_user_text(self):
+        max_size = 1024
+
+        user_text = self.cleaned_data.get("user_text")
+        if len(user_text) >= max_size:
+            raise forms.ValidationError(f"최대 허용 길이: {max_size}")
+        return user_text
 
 
 class ChatRoomForm(forms.ModelForm):
