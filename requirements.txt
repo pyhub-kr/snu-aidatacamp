@@ -1,0 +1,15 @@
+django~=5.1.0
+asgiref
+django-environ
+django-debug-toolbar
+
+django-lifecycle~=1.2.4
+
+django-crispy-forms
+crispy-tailwind
+
+django-pyhub-ai
+
+psycopg2-binary
+uvicorn[standard]
+whitenoise
