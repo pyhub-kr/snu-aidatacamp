@@ -155,13 +155,6 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 # 주소 설정
 #  - django-cors-headers : https://github.com/adamchainz/django-cors-headers?tab=readme-ov-file#configuration
 
-# FE 주소: POST 요청 시에 CSRF
-#  - 백엔드와 프론트엔드가 다른 도메인에서 운영될 때 필수
-#  - 백엔드가 프록시(ex: nginx)를 경유해서 요청을 받을 때 scheme(http/https)가 다를 때에 요구받을 수 있음.
-#    X-Forwarded-Proto 헤더로 original client protocol 전달 필요
-#  - ex) https://fe.snu-aidatacamp.fly.dev
-CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
-
 # FE 주소: 로그인/로그아웃 후에 redirect 허용할 주소
 #  - ex) fe.snu-aidatacamp.fly.dev
 SUCCESS_URL_ALLOWED_HOSTS = env.list("SUCCESS_URL_ALLOWED_HOSTS", default=[])
@@ -169,13 +162,23 @@ SUCCESS_URL_ALLOWED_HOSTS = env.list("SUCCESS_URL_ALLOWED_HOSTS", default=[])
 # FE 주소 : fetch 요청을 허용할 출처(origin) 목록 (포트번호 포함)
 #  - ex) https://fe.snu-aidatacamp.fly.dev
 CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=[])
-
 # 모든 출처에 대해 fetch 요청을 허용할지 여부
 CORS_ALLOW_ALL_ORIGINS = env.bool("CORS_ALLOW_ALL_ORIGINS", default=False)
-
 # FE 단에서 fetch 요청 시에 인증정보(쿠키) 포함을 허용할 지 여부
 CORS_ALLOW_CREDENTIALS = env.bool("CORS_ALLOW_CREDENTIALS", default=False)
 
-# 세션 쿠키를 허용할 도메인
+# 세션/CSRF 쿠키를 허용할 도메인
 #  - ex) ".snu-aidatacamp.fly.dev" : 하위 도메인까지 세션 쿠키 허용
 SESSION_COOKIE_DOMAIN = env.str("SESSION_COOKIE_DOMAIN", default=None)
+CSRF_COOKIE_DOMAIN = env.str("CSRF_COOKIE_DOMAIN", default=SESSION_COOKIE_DOMAIN)
+
+# 세션 쿠키
+SESSION_COOKIE_SAMESITE = env.str("SESSION_COOKIE_SAMESITE", default="Lax")
+SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", default=False)
+
+# FE 주소: POST 요청 시에 CSRF
+#  - 백엔드와 프론트엔드가 다른 도메인에서 운영될 때 필수
+#  - 백엔드가 프록시(ex: nginx)를 경유해서 요청을 받을 때 scheme(http/https)가 다를 때에 요구받을 수 있음.
+#    X-Forwarded-Proto 헤더로 original client protocol 전달 필요
+#  - ex) https://fe.snu-aidatacamp.fly.dev
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
