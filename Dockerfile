@@ -27,5 +27,5 @@ RUN python manage.py collectstatic --noinput
 # Expose the port that the app runs on
 EXPOSE 8000
 
-# Run the application
-CMD ["uvicorn", "mysite.asgi:application", "--host", "0.0.0.0", "--port", "8000"]
+# Run the application using gunicorn with uvicorn workers
+CMD ["gunicorn", "mysite.asgi:application", "--bind", "0.0.0.0:8000", "--worker-class", "uvicorn.workers.UvicornWorker"]

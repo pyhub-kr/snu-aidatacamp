@@ -11,5 +11,6 @@ crispy-tailwind
 django-pyhub-ai
 
 psycopg2-binary
+gunicorn
 uvicorn[standard]
 whitenoise
