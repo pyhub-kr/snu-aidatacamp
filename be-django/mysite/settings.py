@@ -1,15 +1,18 @@
 from pathlib import Path
-from urllib.parse import urlparse
 
 from environ import Env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-env_path = BASE_DIR / ".env"
+env_path_list = [
+    BASE_DIR / ".env",
+    BASE_DIR / "../.env.django",
+]
 
 env = Env()
 
-if env_path.is_file():
-    env.read_env(env_path, overwrite=True)
+for env_path in env_path_list:
+    if env_path.is_file():
+        env.read_env(env_path, overwrite=True)
 
 SECRET_KEY = env.str(
     "SECRET_KEY", default="django-insecure-test-key-do-not-use-in-production"
