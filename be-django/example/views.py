@@ -68,7 +68,7 @@ class ChatRoomUpdateView(LoginRequiredMixin, UpdateView):
         return ChatRoom.objects.filter(user=self.request.user).first()
 
     def form_valid(self, form):
-        messages.success(self.request, "저장했습니다.")
+        messages.success(self.request, "저장했으며, 대화내역은 초기화됩니다.")
         return super().form_valid(form)
 
 

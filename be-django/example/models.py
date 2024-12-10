@@ -43,6 +43,8 @@ You are a language tutor.
             conv = Conversation.objects.create(user=self.user)
             self.conversation = conv
             self.save(update_fields=["conversation"])
+        else:
+            self.conversation.conversationmessage_set.all().delete()
 
     @hook(AFTER_DELETE)
     def on_after_delete(self):
