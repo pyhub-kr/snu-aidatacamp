@@ -2,6 +2,7 @@ from django import __version__
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.version import get_version_tuple
 from django.urls import reverse_lazy
@@ -44,3 +45,19 @@ signup = SignupView.as_view()
 @login_required
 def profile(request):
     return render(request, "accounts/profile.html")
+
+
+def profile_json(request):
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {
+                "is_authenticated": False,
+            },
+            status=401,
+        )
+    return JsonResponse(
+        {
+            "username": request.user.username,
+            "is_authenticated": request.user.is_authenticated,
+        }
+    )
