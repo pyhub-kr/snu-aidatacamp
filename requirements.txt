@@ -5,6 +5,7 @@ django-debug-toolbar
 
 django-lifecycle~=1.2.4
 
+django-cors-headers
 django-crispy-forms
 crispy-tailwind
 
