@@ -162,6 +162,8 @@ SUCCESS_URL_ALLOWED_HOSTS = env.list("SUCCESS_URL_ALLOWED_HOSTS", default=[])
 # FE 주소 : fetch 요청을 허용할 출처(origin) 목록 (포트번호 포함)
 #  - ex) https://fe.snu-aidatacamp.fly.dev
 CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=[])
+# 정규표현식으로 fetch 요청을 허용할 ORIGIN 목록 지정
+CORS_ALLOWED_ORIGIN_REGEXES = env.list("CORS_ALLOWED_ORIGIN_REGEXES", default=[])
 # 모든 출처에 대해 fetch 요청을 허용할지 여부
 CORS_ALLOW_ALL_ORIGINS = env.bool("CORS_ALLOW_ALL_ORIGINS", default=False)
 # FE 단에서 fetch 요청 시에 인증정보(쿠키) 포함을 허용할 지 여부
