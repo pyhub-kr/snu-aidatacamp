@@ -65,7 +65,13 @@ npm start
 
 ### 브라우저로 접속 테스트
 
-브라우저로 http://fe.aidatacamp.pyhub.kr:3000 주소로 접속하셔서, 페이지가 뜨면 성공입니다.
+먼저 개발서버를 구동해주시구요.
+
+```
+npm start
+```
+
+본 CRA 프로젝트에서는 디폴트로 `3000` 포트로 구동됩니다. 그렇다면 브라우저로 http://fe.aidatacamp.pyhub.kr:3000 주소로 접속하셔서, 페이지가 뜨면 성공입니다.
 
 혹시 `This site can’t provide a secure connection` 페이지가 뜨신다면, 브라우저에서 `https` 페이지로 자동 이동한 상태일 것입니다.
 

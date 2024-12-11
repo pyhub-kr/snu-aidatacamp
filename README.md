@@ -3,6 +3,8 @@
 + [백엔드/장고 README](./be-django/README.md)
 + [프론트엔드/CRA README](./fe-react/README.md)
 
+![](./assets/fe-aidatacamp.png)
+
 ## 강사 이진석
 
 + me@pyhub.kr
