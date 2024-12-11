@@ -1,11 +1,11 @@
 from django import __version__
 from django.conf import settings
-from django.contrib.auth import views as auth_views
+from django.contrib.auth import login as auth_login, views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import RedirectURLMixin
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.version import get_version_tuple
-from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from accounts.forms import SignupForm, LoginForm
@@ -33,10 +33,20 @@ logout = LogoutView.as_view(
 )
 
 
-class SignupView(CreateView):
+class SignupView(RedirectURLMixin, CreateView):
     form_class = SignupForm
     template_name = "form.html"
-    success_url = reverse_lazy("accounts:login")
+    # RedirectURLMixin 에서 디폴트 이동 주소이며, ?next 인자를 활용
+    next_page = "accounts:login"
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        # 자동 로그인
+        user = self.object
+        auth_login(self.request, user)
+
+        return response
 
 
 signup = SignupView.as_view()
