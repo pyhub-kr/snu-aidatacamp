@@ -36,8 +36,9 @@ logout = LogoutView.as_view(
 class SignupView(RedirectURLMixin, CreateView):
     form_class = SignupForm
     template_name = "form.html"
-    # RedirectURLMixin 에서 디폴트 이동 주소이며, ?next 인자를 활용
+    # RedirectURLMixin 에서는 성공 이동 주소로서 ?next 인자를 활용하며, 디폴트 주소로서 next_page 설정을 활용
     next_page = "accounts:login"
+    success_url_allowed_hosts = settings.SUCCESS_URL_ALLOWED_HOSTS
 
     def form_valid(self, form):
         response = super().form_valid(form)
