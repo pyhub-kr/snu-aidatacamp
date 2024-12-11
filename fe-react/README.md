@@ -138,8 +138,6 @@ useEffect(() => {
 }, [status]);
 ```
 
-> https://aidatacamp.pyhub.kr 페이지에서 
-
 ### 유저 입력 텍스트 메시지 전송
 
 + 유저 입력 텍스트는 반드시 `user_text` name으로 POST 전송해주셔야 합니다.
