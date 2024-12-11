@@ -73,6 +73,10 @@ npm start
 
 본 CRA 프로젝트에서는 디폴트로 `3000` 포트로 구동됩니다. 그렇다면 브라우저로 http://fe.aidatacamp.pyhub.kr:3000 주소로 접속하셔서, 페이지가 뜨면 성공입니다.
 
+로그인이 필요하면 `https://aidatacamp.pyhub.kr/accounts/login/` 주소로 자동 이동할 것이구요.
+회원가입 하시면 자동 로그인이 되고 다시 리액트 페이지로 자동 이동할 것입니다.
+만약 리액트 페이지로 자동 이동되지 않고 `/accounts/profile/` 페이지로 이동하신다면 수동으로 리액트 페이지로 이동 부탁드립니다.
+
 혹시 `This site can’t provide a secure connection` 페이지가 뜨신다면, 브라우저에서 `https` 페이지로 자동 이동한 상태일 것입니다.
 
 브라우저 설정에서 브라우저 히스토리를 모두 삭제하신 후에 다시 http://fe.aidatacamp.pyhub.kr:3000 주소로 접속해주세요. 
