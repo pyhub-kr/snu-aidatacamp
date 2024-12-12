@@ -1,3 +1,4 @@
+from asgiref.sync import async_to_sync
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,14 +11,23 @@ from example.forms import ChatRoomForm
 from example.models import ChatRoom
 
 
+async def aensure_chat_room(user) -> ChatRoom:
+    obj, is_created = await ChatRoom.objects.aget_or_create(
+        user=user, defaults={"name": "상황극 채팅방 #1"}
+    )
+    return obj
+
+
+def ensure_chat_room(user) -> ChatRoom:
+    return async_to_sync(aensure_chat_room)(user)
+
+
 class ChatRoomListView(LoginRequiredMixin, ListView):
     model = ChatRoom
     template_name = "example/index.html"
 
     def get(self, request, *args, **kwargs):
-        ChatRoom.objects.get_or_create(
-            user=request.user, defaults={"name": "상황극 채팅방 #1"}
-        )
+        ensure_chat_room(request.user)
         return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
@@ -27,6 +37,8 @@ class ChatRoomListView(LoginRequiredMixin, ListView):
 
 @login_required
 def chat_room(request):
+    ensure_chat_room(request.user)
+
     obj = ChatRoom.objects.filter(user=request.user).first()
     if obj is None:
         raise Http404
@@ -65,6 +77,7 @@ class ChatRoomUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("example:index")
 
     def get_object(self, queryset=None):
+        ensure_chat_room(self.request.user)
         return ChatRoom.objects.filter(user=self.request.user).first()
 
     def form_valid(self, form):
