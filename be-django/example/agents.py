@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 
 class SituationChatView(AgentChatView):
     form_class = MessageForm
+    llm_timeout = 5
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
