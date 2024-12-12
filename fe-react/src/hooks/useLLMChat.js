@@ -7,7 +7,7 @@ export const useLLMChat = ({ endpointUrl }) => {
 
   // GET 요청용 스트림 함수
   const getChatHistory = useCallback(
-    async function* () {
+    async function () {
       setIsLoading(true);
       setError(null);
       setStatus(null);
@@ -22,28 +22,25 @@ export const useLLMChat = ({ endpointUrl }) => {
 
         setStatus(response.status);
 
-        yield* handleEventStream(response.body.getReader());
+        return await response.json();
       } catch (err) {
         setError(err);
         console.error("Chat History Error:", err);
       } finally {
         setIsLoading(false);
       }
+
+      return [];
     },
-    [endpointUrl],
+    [endpointUrl]
   );
 
   // POST 요청용 스트림 함수
   const streamChat = useCallback(
-    async function* (userText) {
+    async function (userText) {
       setIsLoading(true);
       setError(null);
       setStatus(null);
-
-      // const csrftoken = window.document.cookie
-      //   .split("; ")
-      //   .find((row) => row.startsWith("csrftoken="))
-      //   ?.split("=")[1];
 
       try {
         const formData = new FormData();
@@ -61,15 +58,17 @@ export const useLLMChat = ({ endpointUrl }) => {
 
         setStatus(response.status);
 
-        yield* handleEventStream(response.body.getReader());
+        return await response.json();
       } catch (err) {
         setError(err);
         console.error("Chat Error:", err);
       } finally {
         setIsLoading(false);
       }
+
+      return [];
     },
-    [endpointUrl],
+    [endpointUrl]
   );
 
   return {
@@ -79,27 +78,4 @@ export const useLLMChat = ({ endpointUrl }) => {
     error,
     status,
   };
-};
-
-// Event stream 처리를 위한 헬퍼 함수
-const handleEventStream = async function* (reader) {
-  const decoder = new TextDecoder();
-
-  while (true) {
-    const { value, done } = await reader.read();
-    if (done) break;
-    const text = decoder.decode(value);
-
-    const lines = text.split("\n\n");
-    for (const line of lines) {
-      if (line.trim()) {
-        const cleanedLine = line.replace(/^data:\s*/, "");
-        try {
-          yield JSON.parse(cleanedLine);
-        } catch (err) {
-          console.error(err);
-        }
-      }
-    }
-  }
 };
