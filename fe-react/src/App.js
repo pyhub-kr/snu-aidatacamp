@@ -10,7 +10,6 @@ import { useLLMChat } from "./hooks/useLLMChat";
 
 function App() {
   const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState("");
   const { getChatHistory, streamChat, isLoading, error, status } = useLLMChat({
     endpointUrl: ENDPOINT_URL,
   });
@@ -43,14 +42,16 @@ function App() {
   const handleSubmit = async (e) => {
     // 폼 기본 제출 동작 방지
     e.preventDefault();
-    // 빈 메시지인 경우 제출하지 않음
-    if (!message.trim()) return;
 
-    // 입력창 초기화
-    setMessage("");
+    // 상탯값에 의존하지 않고 form 요소를 통한 값 조회
+    const userText = e.target.message.value.trim();
+    e.target.reset();
+
+    // 빈 메시지인 경우 제출하지 않음
+    if (!userText) return;
 
     // 스트리밍 채팅 시작
-    const chunkList = await streamChat(message);
+    const chunkList = await streamChat(userText);
     setMessages(
       produce((draft) => {
         draft.push(...chunkList);
@@ -65,8 +66,6 @@ function App() {
       <hr className="my-4" />
       <ChatContainer messages={messages} />
       <ChatInput
-        message={message}
-        setMessage={setMessage}
         onSubmit={handleSubmit}
         isLoading={isLoading}
       />

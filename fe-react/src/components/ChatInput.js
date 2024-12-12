@@ -1,12 +1,11 @@
-function ChatInput({ message, setMessage, onSubmit, isLoading }) {
+function ChatInput({ onSubmit, isLoading }) {
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-2">
       <input
         type="text"
+        name="message"
         className="w-full p-2 border border-gray-300 rounded"
         placeholder="메시지를 입력하세요"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
       />
       <button
         type="submit"
