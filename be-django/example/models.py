@@ -15,7 +15,10 @@ class ChatRoom(LifecycleModel):
 
     llm_model = models.CharField(
         max_length=50,
-        choices=[(model.name, model.name) for model in LLMModel],
+        choices=[
+            (model.name, model.name) for model in LLMModel
+            if "OPUS" not in model.name.upper()
+        ],
         default=LLMModel.ANTHROPIC_CLAUDE_3_5_HAIKU.name,
     )
     llm_temperature = models.FloatField(
