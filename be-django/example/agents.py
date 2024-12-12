@@ -1,4 +1,6 @@
-from typing import Optional, Callable, Coroutine, Type
+import json
+import logging
+from typing import Optional, Callable, Coroutine, Type, AsyncGenerator
 
 from asgiref.sync import sync_to_async
 from pyhub_ai.models import Conversation
@@ -7,6 +9,9 @@ from pyhub_ai.views import AgentChatView
 
 from .forms import MessageForm
 from .models import ChatRoom
+
+
+logger = logging.getLogger(__name__)
 
 
 class SituationChatView(AgentChatView):
@@ -53,3 +58,33 @@ class SituationChatView(AgentChatView):
             return None
 
         return await sync_to_async(get)()
+
+    async def make_stream_response(
+        self, coroutine_producer: Coroutine
+    ) -> AsyncGenerator[str, None]:
+        async_gen = super().make_stream_response(coroutine_producer)
+
+        if self.render_format != "json":
+            async for chunk in async_gen:
+                yield chunk
+
+        else:
+            # 클라이언트 단에서 보다 쉬운 응답 처리를 위해
+            # JSON 응답에 한해서 리스트로서 응답합니다.
+
+            response_dict = {}
+
+            async for chunk in async_gen:
+                try:
+                    obj = json.loads(chunk)
+                except json.JSONDecodeError as e:
+                    logger.warning(e)
+                else:
+                    if obj["id"] not in response_dict:
+                        response_dict[obj["id"]] = obj.copy()
+                    else:
+                        current = response_dict[obj["id"]]
+                        current_content = current.get("content") or ""
+                        current["content"] = current_content + (obj["content"] or "")
+
+            yield json.dumps(list(response_dict.values()), ensure_ascii=False)
