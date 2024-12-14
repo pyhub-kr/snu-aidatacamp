@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # example apps
     "accounts",
     "example",
+    "showcase",
 ]
 
 if DEBUG:

@@ -7,6 +7,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),
     path("example/", include("example.urls")),
+    path("showcase/", include("showcase.urls")),
     path("pyhub-ai/", include("pyhub_ai.urls")),
     path("", RedirectView.as_view(url="/example/")),
 ]
