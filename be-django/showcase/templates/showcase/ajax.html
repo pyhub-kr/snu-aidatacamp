@@ -2,33 +2,59 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js"></script>
   <link rel="stylesheet" href="{% static 'showcase/ajax.css' %}">
-  <script defer src="{% static 'showcase/ajax.js' %}"></script>
   <title>API</title>
 </head>
+
 <body>
   <header>
     <h1>API</h1>
   </header>
   <main>
     <section>
-      <iframe width="800" height="450" src="https://www.youtube.com/embed/5-aShyk1FHc?si=6G0VhSR-wK-V0jW_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe width="800" height="450" src="https://www.youtube.com/embed/5-aShyk1FHc?si=6G0VhSR-wK-V0jW_"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </section>
-    <section id="contents">
+    <section id="contents" x-data="{
+    selected: null,
+    title: '',
+    content: '',
+    async load(selectCode) {
+        const code = selectCode || event.target.className;
+        const res = await fetch('/showcase/ajax/' + code + '.json');
+        const obj = await res.json();
+        this.selected = code;
+        this.title = obj.name;
+        this.content = obj.content;
+    }
+}" x-init="load('restapi')">
       <nav>
         <ul>
-          <li class="restapi">REST API</li>
-          <li class="graphql">GraphQL</li>
-          <li class="websocket">WebSocket</li>
-          <li class="sse">SSE</li>
+          <template x-for="item in [
+            {code: 'restapi', label: 'REST API'},
+            {code: 'graphql', label: 'GraphQL'},
+            {code: 'websocket', label: 'WebSocket'},
+            {code: 'sse', label: 'SSE'}
+          ]" :key="item.code">
+            <li :class="{
+                [item.code]: true,
+                'selected': selected === item.code
+              }" @click="load(item.code)" x-text="item.label">
+            </li>
+          </template>
         </ul>
       </nav>
-      <h2></h2>
-      <p></p>
+      <h2 x-text="title"></h2>
+      <p x-text="content"></p>
     </section>
   </main>
 </body>
+
 </html>

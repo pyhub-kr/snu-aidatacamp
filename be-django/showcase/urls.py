@@ -5,5 +5,5 @@ app_name = "showcase"
 
 urlpatterns = [
     path("ajax/", views.ajax),
-    path("ajax.json", views.ajax_data),
+    path("ajax/<str:code>.json", views.ajax_data),
 ]
