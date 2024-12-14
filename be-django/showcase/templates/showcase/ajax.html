@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'showcase/ajax.css' %}">
+  <script defer src="{% static 'showcase/ajax.js' %}"></script>
+  <title>API</title>
+</head>
+<body>
+  <header>
+    <h1>API</h1>
+  </header>
+  <main>
+    <section>
+      <iframe width="800" height="450" src="https://www.youtube.com/embed/5-aShyk1FHc?si=6G0VhSR-wK-V0jW_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </section>
+    <section id="contents">
+      <nav>
+        <ul>
+          <li class="restapi">REST API</li>
+          <li class="graphql">GraphQL</li>
+          <li class="websocket">WebSocket</li>
+          <li class="sse">SSE</li>
+        </ul>
+      </nav>
+      <h2></h2>
+      <p></p>
+    </section>
+  </main>
+</body>
+</html>
