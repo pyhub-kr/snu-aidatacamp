@@ -1,0 +1,52 @@
+.main {
+  flex-grow: 1;
+  padding: 0 36px;
+  min-height: calc(100vh - 236px);
+}
+
+.main section {
+  padding: 24px 0;
+}
+
+.main section.logos {
+  text-align: center;
+}
+
+.main section.logos img{
+  width: 128px;
+  margin: 1em;
+}
+
+.main section:not(:last-child) {
+  border-bottom: 2px solid #ddd;
+}
+.main section:last-child {
+  margin-bottom: 32px;
+}
+.main section h1 {
+  font-size: 2em;
+}
+.main section h2 {
+  margin-bottom: 0.4em;
+  font-size: 1.4em;
+  color: #333;
+}
+
+.tags {
+  margin-bottom: 2.4em;
+  padding: 0.8em 1.2em;
+  color: white;
+  border-radius: 0.6em;
+}
+.tags li {
+  display: inline;
+  margin-right: 0.6em;
+  font-size: 0.94em;
+}
+
+.characteristics {
+  padding-left: 1.4em;
+}
+.characteristics li {
+  margin-bottom: 1.2em;
+}

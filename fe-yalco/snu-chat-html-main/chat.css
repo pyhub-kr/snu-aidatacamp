@@ -1,0 +1,148 @@
+#app {
+  padding: 2rem;
+  max-width: 42rem;
+  margin: 1em auto;
+  background-color: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+#app header {
+  display: flex;
+  align-items: center;
+}
+
+#app header > a {
+  flex-basis: 120px;
+  text-decoration: none;
+  color: #555;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+#app header #status {
+  flex-basis: 120px;
+  text-align: right;
+  font-size: 1.12rem;
+}
+#app header #status span {
+  display: none;
+}
+#app header #status.loading span {
+  display: block;
+}
+
+#app h1 {
+  flex-grow: 1;
+  margin: 0 auto 1rem;
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+
+#app hr {
+  margin-bottom: 1rem;
+}
+
+#chat-container {
+  height: 60vh;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+#status-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#status-bar span {
+  display: none;
+}
+
+#chat-input{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#chat-input input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+#chat-input button {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  background-color: rgb(59, 130, 246);
+  color: white;
+}
+
+.message-container {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.role-notice {
+  background-color: #bfdbfe;
+  color: #1e3a8a;
+  border-color: #93c5fd;
+}
+
+.role-system {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  border-color: #e5e7eb;
+}
+
+.role-assistant {
+  background-color: #d1fae5;
+  color: #065f46;
+  border-color: #86efac;
+  margin-right: auto;
+  max-width: 80%;
+}
+
+.role-usage {
+  padding: 0;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.role-user {
+  background-color: #fef3c7;
+  color: #854d0e;
+  border-color: #fde68a;
+  margin-left: auto;
+  max-width: 80%;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.whitespace-preWrap {
+  white-space: pre-wrap;
+}

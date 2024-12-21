@@ -1,0 +1,22 @@
+.chatInput {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chatInput input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+.chatInput button {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  background-color: rgb(59, 130, 246);
+  color: white;
+}

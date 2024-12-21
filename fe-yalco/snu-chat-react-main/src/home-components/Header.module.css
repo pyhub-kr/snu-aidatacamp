@@ -1,0 +1,11 @@
+.header {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.6em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,12 @@
+.chat {
+  padding: 2rem;
+  max-width: 42rem;
+  margin: 1em auto;
+  background-color: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.chat hr {
+  margin-bottom: 1rem;
+}

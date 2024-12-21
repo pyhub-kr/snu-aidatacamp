@@ -1,0 +1,62 @@
+.messageContainer {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  width: 100%;
+  line-height: 1.14em;
+}
+
+.roleNotice {
+  background-color: #bfdbfe;
+  color: #1e3a8a;
+  border-color: #93c5fd;
+}
+
+.roleSystem {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  border-color: #e5e7eb;
+}
+
+.roleAssistant {
+  background-color: #d1fae5;
+  color: #065f46;
+  border-color: #86efac;
+  margin-right: auto;
+  max-width: 80%;
+}
+
+.roleUsage {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.roleUser {
+  background-color: #fef3c7;
+  color: #854d0e;
+  border-color: #fde68a;
+  margin-left: auto;
+  max-width: 80%;
+}
+
+.flexContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.fontSemibold {
+  font-weight: 600;
+}
+
+.textXs {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.whitespacePreWrap {
+  white-space: pre-wrap;
+}

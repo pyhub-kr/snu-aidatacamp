@@ -1,0 +1,14 @@
+.colorPicker button {
+  margin: 2em 0.4em 0;
+  width: 2.4em;
+  height: 2.4em;
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.33;
+}
+
+.colorPicker button.selected {
+  opacity: 1;
+}

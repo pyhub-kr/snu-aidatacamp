@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css" />
+  <title>SNU Web App Camp</title>
+</head>
+<body>
+  <header>
+    <h1>
+      SNU Frontend Camp
+    </h1>
+  </header>
+  <nav>
+    <ul>
+      <li class="current"><a href="#">HTML & CSS</a></li>
+      <li><a href="./js-react.html">JS & React</a></li>
+      <li>
+        <a href="./chat.html">Chat Project</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="contents">
+    <aside>
+      <ul>
+        <li><a href="#html-intro">HTML이란?</a></li>
+        <li><a href="#html-why-learn">태그의 중요성</a></li>
+        <li><a href="#css-intro">CSS란?</a></li>
+        <li><a href="#css-how-to-apply">스타일 적용 방법</a></li>
+        <li><a href="#css-basic-properties">기초 속성들</a></li>
+      </ul>
+    </aside>
+    <main>
+      <section class="logos">
+        <img src="./images/html.png" alt="HTML Logo" />
+        <img src="./images/css.png" alt="CSS Logo" />
+      </section>
+      <section id="html-intro">
+        <h1>HTML이란 무엇인가요?</h1>
+        <p>
+          HTML(하이퍼텍스트 마크업 언어, HyperText Markup Language)은 웹 페이지의 구조와 콘텐츠를 정의하는
+          마크업 언어입니다.
+          웹 문서를 작성할 때 사용하는 기본 언어로, 텍스트, 이미지, 링크, 표 등 다양한 요소를 표현할 수 있습니다. 
+        </p>
+        <p>
+          HTML은 태그(tag)를 사용하여 문서의 각 부분을 정의하며, 이러한 태그는 브라우저가 콘텐츠를 올바르게 표시하는 데 도움을 줍니다. HTML은 모든 웹 브라우저에서 지원되며, CSS나 JavaScript와 함께 웹 개발의 핵심 역할을 합니다. 이를 통해 사용자는 다양한 웹 페이지를 제작하고, 정보를 효과적으로 전달할 수 있습니다.
+        </p>
+      </section>
+      <section id="html-why-learn">
+        <h1>태그를 배워야 하는 이유</h1>
+        <ol>
+          <li>
+            <h2>태그의 기본 역할 이해</h2>
+            <p>
+              HTML 태그는 웹 페이지의 구조와 콘텐츠를 정의하는 기본 요소로, 각 태그의 용도를 정확히 이해하면 콘텐츠를 올바르게 표현할 수 있습니다.
+            </p>
+          </li>
+          <li>
+            <h2>검색 엔진 최적화(SEO)와 접근성</h2>
+            <p>
+              태그의 용도를 알면 검색 엔진 최적화(SEO)에 유리하며, 접근성 향상을 통해 더 많은 사용자가 콘텐츠를 쉽게 이용할 수 있습니다.
+            </p>
+          </li>
+          <li>
+            <h2>오류 방지</h2>
+            <p>
+              잘못된 태그 사용은 브라우저에서의 잘못된 표시나 기능 장애를 유발할 수 있으므로, 올바른 태그를 사용하는 것이 중요합니다.
+            </p>
+          </li>
+          <li>
+            <h2>코드의 가독성과 유지보수성</h2>
+            <p>
+              다른 개발자와 협업 시, 태그를 올바르게 사용하면 코드의 가독성과 유지보수성이 향상됩니다.
+            </p>
+          </li>
+        </ol>
+      </section>
+      <section id="css-intro">
+        <h1>CSS란 무엇인가요?</h1>
+        <p>
+          CSS(캐스케이딩 스타일 시트, Cascading Style Sheets)는 <strong>웹 페이지의 디자인과 레이아웃을 꾸미는 언어</strong>입니다. HTML이 구조를 정의한다면, CSS는 글꼴, 색상, 크기, 여백, 배경 등 <strong>시각적인 스타일</strong>을 설정합니다.
+        </p>
+        <p>
+          CSS를 사용하면 같은 HTML 구조에서도 <strong>다양한 디자인</strong>을 적용할 수 있고, 여러 페이지에 동일한 스타일을 쉽게 적용하여 <strong>웹 사이트 관리를 효율적</strong>으로 도울 수 있습니다.
+        </p>
+
+        <p>
+      </section>
+      <section id="css-how-to-apply">
+        <h1>CSS를 적용하는 방법</h1>
+        <ul>
+          <li><h2>인라인 스타일</h2>
+            <ol>
+              <li>HTML 태그의 style 속성을 사용해 직접 CSS를 적용합니다.</li>
+              <li>간단한 스타일을 개별 요소에 적용할 때 사용됩니다.</li>
+            </ol>
+          </li>
+          <li><h2>내부 스타일 (Internal Style)</h2>
+            <ol>
+              <li>
+                HTML 파일의 head 태그 내부에 style 태그를 사용해 CSS를 작성합니다.
+              </li>
+              <li>
+                단일 문서에 스타일을 정의할 때 적합합니다.
+              </li>
+            </ol>
+          </li>
+          <li><h2>외부 스타일시트 (External Stylesheet)</h2>
+            <ol>
+              <li>별도의 CSS 파일을 생성하고 link 태그로 HTML 파일에 연결합니다.</li>
+              <li>여러 HTML 파일에서 동일한 스타일을 재사용할 수 있어 유지보수에 효율적입니다.</li>
+            </ol>
+          </li>
+        </ul>
+      </section>
+      <section id="css-basic-properties">
+        <h1>CSS의 기초 속성들</h1>
+        <article>
+          <h1>margin</h1>
+          <p>
+            margin 속성은 요소의 외부 여백을 설정하여 다른 요소와의 간격을 조정합니다. 레이아웃 구성 시 공간을 효과적으로 관리하는 데 필수적입니다.
+          </p>
+          <footer>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin" target="_blank">문서 보기</a>
+          </footer>
+        </article>
+        <article>
+          <h1>display</h1>
+          <p>
+            display 속성은 요소의 표시 방식을 정의하며, 블록, 인라인, 플렉스 등 다양한 레이아웃을 설정할 수 있습니다. 웹 페이지의 레이아웃 구조를 결정하는 데 핵심 역할을 합니다.
+          </p>
+          <footer>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" target="_blank">문서 보기</a>
+          </footer>
+        </article>
+        <article>
+          <h1>color</h1>
+          <p>
+            color 속성은 텍스트의 색상을 지정하는 데 사용됩니다. 웹 페이지의 분위기와 가독성을 결정하는 중요한 요소입니다.
+          </p>
+          <footer>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank">문서 보기</a>
+          </footer>
+        </article>
+        <article>
+          <h1>font-size</h1>
+          <p>
+            font-size 속성은 텍스트의 크기를 지정하여 가독성을 조절합니다. 중요한 정보를 강조하거나 전체적인 디자인에 맞는 텍스트 크기를 설정하는 데 사용됩니다.
+          </p>
+          <footer>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size" target="_blank">문서 보기</a>
+          </footer>
+        </article>
+        <article>
+          <h1>background</h1>
+          <p>
+            background 속성은 요소의 배경 색상이나 이미지를 설정합니다. 이를 통해 웹 페이지를 시각적으로 더욱 풍부하게 만들 수 있습니다.
+          </p>
+          <footer>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background" target="_blank">문서 보기</a>
+          </footer>
+        </article>
+      </section>
+    </main>
+  </div>
+  <footer>
+    <h1>Contacts</h1>
+    <address>
+      이메일: <a href="mailto:yalco@yalco.kr">yalco@yalco.kr</a>
+    </address>
+  </footer>
+</body>
+</html>

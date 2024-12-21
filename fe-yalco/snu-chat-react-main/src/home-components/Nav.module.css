@@ -1,0 +1,25 @@
+.nav {
+  background-color: #333;
+}
+.nav ul {
+  width: 920px;
+  margin: 0 auto;
+  padding-left: 0;
+  text-align: center;
+}
+.nav ul li {
+  display: inline;
+}
+.nav ul li a {
+  display: inline-block;
+  padding: 16px 24px;
+  font-size: 1.06em;
+  color: white;
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.nav ul li.current a {
+  font-weight: bold;
+  opacity: 1;
+}
