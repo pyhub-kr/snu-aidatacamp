@@ -18,9 +18,12 @@ class ChatRoom(LifecycleModel):
         choices=[
             (model.name, model.name)
             for model in LLMModel
-            if "OPUS" not in model.name.upper()
+            if "OPUS" not in model.name.upper() and ("OPENAI_" in model.name.upper()
+                                                     # or "ANTHRO" in model.name.upper()
+                                                     )
         ],
-        default=LLMModel.ANTHROPIC_CLAUDE_3_5_HAIKU.name,
+        default=LLMModel.OPENAI_GPT_4O_MINI.name,
+        # default=LLMModel.ANTHROPIC_CLAUDE_3_5_HAIKU.name,
     )
     llm_temperature = models.FloatField(
         default=1, validators=[MinValueValidator(0), MaxValueValidator(1)]
