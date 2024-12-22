@@ -54,7 +54,7 @@ class SituationChatView(AgentChatView):
             return self.chat_room.llm_first_user_message_template
         return await super().aget_llm_first_user_message()
 
-    async def get_conversation(self) -> Optional[Conversation]:
+    async def aget_conversation(self) -> Optional[Conversation]:
         def get():
             if self.chat_room:
                 return self.chat_room.conversation
