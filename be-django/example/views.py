@@ -1,4 +1,3 @@
-from asgiref.sync import async_to_sync
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,15 +10,11 @@ from example.forms import ChatRoomForm
 from example.models import ChatRoom
 
 
-async def aensure_chat_room(user) -> ChatRoom:
-    obj, is_created = await ChatRoom.objects.aget_or_create(
+def ensure_chat_room(user) -> ChatRoom:
+    obj, is_created = ChatRoom.objects.get_or_create(
         user=user, defaults={"name": "상황극 채팅방 #1"}
     )
     return obj
-
-
-def ensure_chat_room(user) -> ChatRoom:
-    return async_to_sync(aensure_chat_room)(user)
 
 
 class ChatRoomListView(LoginRequiredMixin, ListView):
