@@ -1,0 +1,3 @@
+# hottrack/urls.py
+
+urlpatterns = []

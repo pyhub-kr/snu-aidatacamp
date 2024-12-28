@@ -1,0 +1,86 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <title>hello, nanodjango</title>
+    <script src="//cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-white text-black py-4 px-6">
+            <h1 class="text-2xl font-bold text-center">SNU Frontend Camp</h1>
+        </header>
+
+        <nav class="bg-gray-800 text-gray-300">
+            <ul class="flex justify-center space-x-6 px-6 py-2">
+                <li>
+                    <a href="/" class="text-white font-bold">JS & React</a>
+                </li>
+                <li>
+                    <a href="/chat" class="font-bold">Chat Project</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="flex flex-1">
+            <aside class="w-64 bg-gray-100 p-6">
+                <ul class="space-y-2">
+                    {% for page in page_dict.values %}
+                    <li>
+                        <a href="?page_id={{ page.id }}"
+                            class="hover:text-blue-600 {% if current_page_id == page.id %}font-bold underline{% endif %}">
+                            {{ page.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </aside>
+
+            <main class="flex-1 p-6" x-data="{ bg_color: 'dodgerblue' }">
+                <div>
+                    {% for button_color in button_colors %}
+                    <button
+                        class="bg-[{{ button_color }}] mt-8 mx-1.5 w-9 h-9 border-0 outline-none rounded-full cursor-pointer"
+                        :style="{ opacity: bg_color === '{{ button_color }}' ? '1' : '0.33' }"
+                        @click="bg_color = '{{ button_color }}'">
+                    </button>
+                    {% endfor %}
+                </div>
+
+                <section>
+                    <h1 class="text-3xl font-bold mb-4">{{ current_page.name }}</h1>
+                    <p class="text-gray-600 mb-6 leading-relaxed">{{ current_page.definition }}</p>
+                    <ul :style="'background-color: ' + bg_color + ';'" class="flex flex-wrap gap-2 p-2 rounded mb-8">
+                        {% for tag in current_page.tags %}
+                        <li class="px-2 py-1 text-white rounded">#{{ tag }}</li>
+                        {% endfor %}
+                    </ul>
+                    <h2 class="text-2xl font-semibold mb-4">주요 특징</h2>
+                    <ul class="space-y-4 list-disc pl-5">
+                        {% for c in current_page.keyCharacteristics %}
+                        <li>
+                            <strong class="text-lg font-semibold text-gray-800 block mb-1">{{ c.subtitle }}</strong>
+                            <span class="text-gray-600 leading-relaxed">{{ c.description }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </main>
+        </div>
+
+        <footer class="bg-gray-800 text-white py-4 px-6">
+            <h1 class="text-xl font-bold mb-2">Contacts</h1>
+            <address>
+                이메일: <a href="mailto:me@pyhub.kr" class="text-blue-300 hover:text-blue-400">me@pyhub.kr</a>
+            </address>
+        </footer>
+    </div>
+
+</body>
+
+</html>
