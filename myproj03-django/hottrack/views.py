@@ -1,6 +1,7 @@
 import json
 from urllib.request import urlopen
 
+from django.db.models import QuerySet, Q
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
