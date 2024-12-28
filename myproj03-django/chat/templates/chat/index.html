@@ -1,0 +1,35 @@
+{% extends "chat/base.html" %}
+
+{% block content %}
+    <form id="content-form" action="{% url 'chat:reply' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="content"/>
+        <input type="submit" value="전송"/>
+    </form>
+
+    <div id="chat-messages">
+        empty
+    </div>
+
+    <script>
+      document.querySelector("#content-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formEl = e.target;
+
+        const url = formEl.action;
+        const formData = new FormData(formEl);
+
+        fetch(url, {
+          method: "POST",
+          body: formData,
+        })
+          .then(response => response.text())
+          .then(html => {
+            document.querySelector("#chat-messages").innerHTML += html;
+            formEl.reset();
+          });
+
+      });
+    </script>
+{% endblock %}
