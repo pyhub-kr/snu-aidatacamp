@@ -10,7 +10,7 @@ def index(request):
     chat_messages = request.session.get("chat_messages", [])
     return render(
         request,
-        "chat/index_vanilla.html",
+        "chat/index.html",
         {
             "chat_messages": chat_messages,
         },

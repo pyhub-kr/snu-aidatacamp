@@ -2,9 +2,10 @@
 
 {% block content %}
     <form hx-post="{% url 'chat:reply' %}"
+          hx-ext="streaming-html"
           hx-target="#chat-messages"
           hx-swap="beforeend"
-          hx-on::after-request="this.reset();">
+          hx-on:chunk="if(event.detail.count === 0) this.reset();">
         {% csrf_token %}
         <input type="text" name="content"/>
         <input type="submit" value="전송"/>
