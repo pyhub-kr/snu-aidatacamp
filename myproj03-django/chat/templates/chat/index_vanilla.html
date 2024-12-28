@@ -1,0 +1,52 @@
+{% extends "chat/base.html" %}
+
+{% block content %}
+    <form id="content-form" action="{% url 'chat:reply' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="content"/>
+        <input type="submit" value="전송"/>
+    </form>
+    <div id="chat-messages">
+        {% for message in chat_messages %}
+            <div>
+                {% if message.role == "user" %}
+                    [Human] {{ message.content }}
+                {% endif %}
+                {% if message.role == "assistant" %}
+                    [AI] {{ message.content }}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+      document.querySelector("#content-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formEl = e.target;
+        const url = formEl.action;
+        const formData = new FormData(formEl);
+        const response = fetch(url, {
+          method: "POST",
+          body: formData,
+          headers: {
+            "X-CSRFToken": formData.get("csrfmiddlewaretoken"),
+          }
+        });
+
+        response.then(async (res) => {
+          const reader = res.body.getReader();
+          const decoder = new TextDecoder();
+          const chatMessages = document.querySelector("#chat-messages");
+
+          while (true) {
+            const {done, value} = await reader.read();
+            if (done) break;
+
+            const text = decoder.decode(value);
+            chatMessages.innerHTML += text;
+          }
+        });
+
+        formEl.reset();
+      });
+    </script>
+{% endblock %}
