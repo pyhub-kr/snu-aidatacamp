@@ -10,5 +10,16 @@
         <input type="submit" value="전송"/>
     </form>
 
-    <div id="chat-messages"></div>
+    <div id="chat-messages">
+        {% for message in chat_messages %}
+            <div>
+                {% if message.role == "user" %}
+                    [Human] {{ message.content }}
+                {% endif %}
+                {% if message.role == "assistant" %}
+                    [AI] {{ message.content }}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
