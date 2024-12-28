@@ -55,8 +55,30 @@ from hottrack.models import Song
 #
 
 
+class SongListView(ListView):
+    model = Song
+    template_name = "hottrack/index.html"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.query = ""  # instance 변수는 생성자에 정의합니다.
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        self.query = self.request.GET.get("query", "").strip()
+        if self.query:
+            qs = qs.filter(
+              Q(name__icontains=self.query)
+              | Q(artist_name__icontains=self.query)
+              | Q(album_name__icontains=self.query)
+            )
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data["query"] = self.query
+        return context_data
+
+
 # 검색 지원 X
-index = ListView.as_view(
-    model=Song,
-    template_name='hottrack/index.html',
-)
+index = SongListView.as_view()
