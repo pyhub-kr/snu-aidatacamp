@@ -13,14 +13,7 @@
 
     <div id="chat-messages">
         {% for message in chat_messages %}
-            <div>
-                {% if message.role == "user" %}
-                    [Human] {{ message.content }}
-                {% endif %}
-                {% if message.role == "assistant" %}
-                    [AI] {{ message.content }}
-                {% endif %}
-            </div>
+            {% include "chat/_chat_message.html" with message=message %}
         {% endfor %}
     </div>
 {% endblock %}

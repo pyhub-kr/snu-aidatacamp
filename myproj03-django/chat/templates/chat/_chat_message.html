@@ -1,0 +1,11 @@
+{% if message.role %}
+    <div {% if message.id %}id="{{ message.id }}"{% endif %}
+         {% if chunk %}hx-swap-oob="true"{% endif %}>
+        {% if message.role == "user" %}
+            [Human] {{ message.content }}
+        {% endif %}
+        {% if message.role == "assistant" %}
+            [AI] {{ message.content }}
+        {% endif %}
+    </div>
+{% endif %}
